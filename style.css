@@ -3,11 +3,11 @@
 *******/
 
 body {
-	background-image: url(%%bg%%);
+	background-image: url(%%bg-dark%%);
 	background-repeat: no-repeat;
-	background-color: black;
-	background-position: 105% 0;
-	background-size: 60%;
+	background-color: rgb(1, 5, 18);
+	background-position: 100% 0;
+	background-size: calc(20% + 900px);
 }
 
 a {
@@ -148,7 +148,7 @@ a:hover {
 #header .pagename a {
 	display: block;
 	width: 300px;
-	height: 110px;
+	height: 120px;
 	
 	background-image: url(%%header-logo%%);
 	background-repeat: no-repeat;
@@ -190,9 +190,7 @@ a:hover {
 	background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.08) 8%, transparent 8%,
 						transparent 16%, rgba(0, 0, 0, 0.08) 16%,
 						rgba(0, 0, 0, 0.08) 24%,	transparent 24%);
-	border-left: 1px solid black;
-	border-right: 1px solid black;
-	border-top: 1px solid black;
+	box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5);
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	
@@ -238,7 +236,7 @@ a:hover {
 	
 	padding-top: 3px;
 	
-	background: linear-gradient(to top, rgb(37, 115, 114), rgb(53, 178, 176) /*rgb(20, 180, 20), rgb(50, 255, 50)*/);
+	background: linear-gradient(to top, rgb(37, 115, 114), rgb(53, 178, 176));
 	border-bottom: 1px solid rgb(50, 50, 50);
 	
 	text-shadow: 0 0 4px rgba(100, 100, 100, 0.5);
@@ -257,7 +255,6 @@ a:hover {
 }
 
 .side .usertext .md > ol li:last-child :not(a):first-child {
-	border-right: 1px solid black;
 	border-top-right-radius: 10px;
 }
 
@@ -436,9 +433,9 @@ a:hover {
 .side #search input[type="text"] {
 	padding: 2px 0;
 	
-	background-color: rgba(5, 5, 13, 0.8);
+	background-color: rgba(5, 5, 13, 0.9);
 	border: 1px solid rgba(35, 107, 132, 0.9);
-	border-radius: 3px;
+	border-radius: 5px;
 	
 	color: rgb(120, 120, 120);
 	text-indent: 5px;
@@ -488,8 +485,8 @@ a:hover {
 .titlebox {
 	padding: 8px;
 	
-	background-color: rgba(5, 5, 13, 0.95);
-	border: 1px solid #236B84;
+	background-color: rgba(5, 5, 13, 0.9);
+	border: 1px solid rgba(35, 107, 132, 0.9);
 	border-radius: 7px;
 	
 	color: #DFE1E1;
@@ -560,6 +557,8 @@ body.res .titlebox .fancy-toggle-button {
 	list-style: none;
 	
 	margin: 0;
+	
+	background-color: rgb(240, 240, 240);
 }
 
 .side .usertext .md > blockquote:nth-of-type(2) ol li {
@@ -671,183 +670,69 @@ body.res .titlebox .fancy-toggle-button {
 	border-color: #FDEABA #BF712C #B66521 #EDBD6E;
 }
 
-/****************
-* Link listings *
-****************/
+/*********
+* Common *
+*********/
 
 /* Frame */
 
-.listing-page #siteTable {
-	background-color: rgba(240, 240, 240, 0.96);
+.listing-page #siteTable,				/* Listing pages */
+.comments-page .content[role="main"] {	/* Comment pages */
+	background-color: rgba(255, 255, 255, 0.9);
 	border-image: url(%%frame-menued%%) 100 100 100 100 / 100px 100px 100px 100px / 22px 15px 20px 15px round round;
 	
 	margin: 25px 316px 0px 10px;
-	padding: 46px 17px 4px 18px;
+	padding: 46px 14px 4px 15px;
 }
 
 /* Frame menu */
 
-.listing-page .tabmenu {
+.tabmenu {
 	position: absolute;
 	top: 200px;
 	left: 60px;
 }
 
-.listing-page .tabmenu li {
+.tabmenu li {
 	display: inline-block;
 	
 	margin: 0;
 	padding: 0 10px;
 }
 
-.listing-page .tabmenu li:not(:last-child) {
+.tabmenu li:not(:last-child) {
 	background-image: url(%%frame-menu-divider%%);
 	background-repeat: no-repeat;
 	background-position: right center;
 }
 
-.listing-page .tabmenu li a {
+.tabmenu li a {
 	background: none;
 	border: none;
 	
 	color: #E7E7E7;
 }
 
-.listing-page .tabmenu li.selected a {
+.tabmenu li.selected a {
 	background: none;
 	border: none;
 	
 	color: #BAFFF7;
 }
 
-.listing-page .tabmenu li:hover a {
+.tabmenu li:hover a {
 	color: #BAFFF7;
 }
-
-/* Sort menu */
-
-.listing-page .menuarea {
-	position: relative;
-	top: 58px;
-	left: 20px;
-	z-index: 1;
-	
-	margin-bottom: -14px;
-	
-	border-bottom: medium none;
-}
-
-/* Links */
-
-.link {
-	margin: 2px 5px 5px;
-	padding: 8px 4px;
-	
-	border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 15%, rgba(255, 255, 255, 0.4) 85%, rgba(255, 255, 255, 0) 100%) 0;
-	border-style: none none solid;
-	border-width: 1px;
-}
-
-.link .entry {
-	padding: 2px;
-}
-
-.link .entry .domain, .link .entry .domain a {
-	color: rgb(175, 175, 175);
-}
-
-.link .entry .tagline {
-	color: rgb(175, 175, 175);
-}
-
-@media all and (max-width: 1100px) {
-	.link .thumbnail {
-		display: none;
-	}
-}
-
-/* Sticky */
-
-/* RES things */
-
-.NERPageMarker {
-	margin: -6px -3px 2px;
-
-	border-style: solid none;
-}
-
-/***********
-* Comments *
-***********/
-
-/* Frame */
-
-.comments-page .content[role="main"] {
-	background-color: rgba(240, 240, 240, 0.9);
-	border-image: url(%%frame-menued%%) 100 100 100 100 / 100px 100px 100px 100px / 22px 15px 20px 15px round round;
-	
-	margin: 25px 316px 0px 10px;
-	padding: 46px 17px 4px 18px;
-}
-
-/* Frame menu */
-
-.comments-page .tabmenu {
-	position: absolute;
-	top: 200px;
-	left: 60px;
-}
-
-.comments-page .tabmenu li {
-	display: inline-block;
-	
-	margin: 0;
-	padding: 0 10px;
-}
-
-.comments-page .tabmenu li:not(:last-child) {
-	background-image: url(%%frame-menu-divider%%);
-	background-repeat: no-repeat;
-	background-position: right center;
-}
-
-.comments-page .tabmenu li a {
-	background: none;
-	border: none;
-	
-	color: #E7E7E7;
-}
-
-.comments-page .tabmenu li.selected a {
-	background: none;
-	border: none;
-	
-	color: #BAFFF7;
-}
-
-.comments-page .tabmenu li:hover a {
-	color: #BAFFF7;
-}
-
-/* Post content/link */
-
-.comments-page .link {
-	margin-right: 25px;
-	
-	background-color: transparent;
-}
-
-/* Comment area */
-
-.comment {
-	
-}
-
-/**********
-* Content *
-**********/
 
 /* Arrows */
+
+.midcol, .gadget .midcol {
+	width: 20px;
+}
+
+.gadget .midcol {
+	margin-right: 4px;
+}
 
 .arrow {
 	background-image: url(%%arrows%%) !important;
@@ -881,6 +766,94 @@ body.res .titlebox .fancy-toggle-button {
 	background-position: -40px -16px;
 }
 
+/****************
+* Link listings *
+****************/
+
+/* Sort menu */
+
+.listing-page .menuarea {
+	position: relative;
+	top: 58px;
+	left: 20px;
+	z-index: 1;
+	
+	margin-bottom: -14px;
+	
+	border-bottom: medium none;
+}
+
+/* Links */
+
+.link {
+	margin: 0;
+	padding: 10px 4px;
+	
+	border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 15%, rgba(255, 255, 255, 0.4) 85%, rgba(255, 255, 255, 0) 100%) 0;
+	border-style: none none solid;
+	border-width: 1px;
+	
+	transition: background-color 0.2s linear 0s;
+}
+
+.link:hover {
+	background-color: rgba(255, 255, 255, 0.25);
+}
+
+.link .entry {
+	padding: 2px;
+}
+
+.link .entry .domain, .link .entry .domain a {
+	color: rgb(175, 175, 175);
+}
+
+.link .entry .tagline {
+	color: rgb(175, 175, 175);
+}
+
+@media all and (max-width: 1100px) {
+	.link .thumbnail {
+		display: none;
+	}
+}
+
+.link .rank {
+	margin-right: 2px;
+}
+
+/* Sticky */
+
+/* RES things */
+
+.NERPageMarker {
+	margin: -6px -3px 2px;
+
+	border-style: solid none;
+}
+
+/***********
+* Comments *
+***********/
+
+/* Post content/link */
+
+.comments-page .link {
+	margin-right: 25px;
+	
+	background-color: transparent;
+}
+
+/* Comment area */
+
+.comment {
+	
+}
+
+/**************************
+* Markdown-based features *
+**************************/
+
 /* Spoiler Tag */
 
 a[href$="/spoiler"] {
@@ -909,7 +882,6 @@ a[href$="/spoiler"]:hover {
 
 .linefield {
 	background-color: #E9EAEC;
-	border: 2px solid #C7C7C7;
 	border-radius: 7px;
 }
 

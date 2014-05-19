@@ -5,7 +5,7 @@
 
 1. NA
 
-  Is not broked.  
+  Log in and play.  
   [Click here to report server issues.](http://lag.p00rleno.com/?s=1)
 
 2. # EUW
@@ -20,32 +20,32 @@
 
 4. ## OCE
 
-  Is acting up.  
+  Reported login issues.  
   [Click here to report server issues.](http://lag.p00rleno.com/?s=4)
 
 5. LAN
 
-  Is not broked.  
+  Log in and play!  
   [Click here to report server issues.](http://lag.p00rleno.com/?s=5)
 
 6. LAS
 
-  Is not broked.  
+  Log in and play.  
   [Click here to report server issues.](http://lag.p00rleno.com/?s=6)
 
 7. BR
 
-  Is not broked.  
+  Log in and play.  
   [Click here to report server issues.](http://lag.p00rleno.com/?s=9)
 
 7. TR
 
-  Is not broked.  
+  Log in and play.  
   [Click here to report server issues.](http://lag.p00rleno.com/?s=7)
 
 8. RU
 
-  Is not broked.  
+  Log in and play.  
   [Click here to report server issues.](http://lag.p00rleno.com/?s=8)
 
 >* Subreddit
@@ -82,5 +82,3 @@
 2. [*a butcher long imprisoned*](#2)
 3. [*warning kingdoms tryndamere*](#3)
 4. [*patch 4.1 notes*](#4)
-
-Other sidebar content
