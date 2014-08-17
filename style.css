@@ -1,22 +1,41 @@
+/*
+Colors
+------
+Focus text: rgb(14, 137, 204)
+Secondary text: rgb(136, 136, 136)
+
+Text on dark: rgb(225, 225, 225)
+Text on light: rgb(63, 63, 63)
+*/
+
 /*******
 * Page *
 *******/
 
 body {
-	background-image: url(%%bg-dark%%);
+	background-image: url(%%bg-dark%%) !important;
 	background-repeat: no-repeat;
-	background-color: rgb(1, 5, 18);
+	background-color: rgb(1, 5, 18) !important;
 	background-position: 100% 0;
-	background-size: calc(20% + 900px);
+	background-size: calc(20% - -900px);
+	background-attachment: fixed;
 }
 
-a {
-	color: #257372;
+a,
+html.res-nightmode a,
+.tagline a,
+.link .buttons li a.comments,
+html.res-nightmode .link .buttons li a.comments {
+	color: rgb(14, 137, 204);
 }
 
-a:hover {
-	color: #5CB2B1;
-}
+/*a:hover,
+html.res-nightmode a:hover,
+.tagline a:hover,
+.link .buttons li a.comments:hover,
+html.res-nightmode .link .buttons li a.comments:hover {
+	color: color: rgb(22, 140, 204);
+}*/
 
 /*********
 * Header *
@@ -25,16 +44,17 @@ a:hover {
 /* Subreddits bar */
 
 #sr-header-area {
-	background-color: #161616;
-	border-color: #2B2B2B;
+	background-color: #161616 !important;
+	border-color: #2B2B2B !important;
 }
 
 #sr-header-area a {
-	color: rgb(150, 150, 150);
+	color: rgb(150, 150, 150) !important;
 }
 
 #sr-header-area a:hover {
-	color: white;
+	color: white !important;
+	text-decoration: none;
 }
 
 #sr-header-area .selected a, #sr-header-area a.RESShortcutsCurrentSub {
@@ -48,6 +68,10 @@ a:hover {
 #sr-header-area .srdrop {
 	background-color: #161616;
 	border-color: #2B2B2B;
+}
+
+#sr-header-area .srdrop .choice:hover {
+	background-color: #202020;
 }
 
 #sr-header-area .srdrop .choice.bottom-option {
@@ -73,8 +97,7 @@ a:hover {
 	padding-left: 10px;
 	padding-right: 10px;
 	
-	/*background-image: url(%%sidebar-bg%%);*/
-	background-color: #161616;
+	background-color: #161616 !important;
 	
 	border-color: #2B2B2B;
 	border-width: 1px;
@@ -86,8 +109,7 @@ a:hover {
 #header-bottom-right #userbarToggle {
 	bottom: -1px;
 	
-	/*background-image: url(%%sidebar-bg%%);*/
-	background-color: #111111;
+	background-color: #161616;
 	
 	border-color: #2B2B2B;
 	border-width: 1px;
@@ -346,14 +368,15 @@ a:hover {
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul {
-	width: 126px;
+	width: 120px;
+	height: 26px;
 	float: left;
 	
 	margin: 18px 0 0;
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul:first-child {
-	margin-left: 70px;
+	margin-left: 50px;
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul li {
@@ -372,15 +395,18 @@ a:hover {
 	padding-left: 4px;
 	
 	color: #6AC4CC;
+	
+	transition: 0.1s linear color, 0.1s linear text-shadow;
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul li:hover a {
 	color: #BAFFF7;
+	text-shadow: 0 0 4px rgba(0, 185, 226, 0.8);
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul li:first-child {
 	display: block;
-	width: 80px;
+	/*width: 80px;*/
 	
 	margin-bottom: 1px;
 	
@@ -390,9 +416,15 @@ a:hover {
 	text-align: center;
 	color: #D1D3D5;
 	font-size: 13px;
+	
+	transition: 0.1s linear color, 0.1s linear text-shadow;
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul li:nth-child(n+2) {
+	display: block;
+	visibility: hidden;
+	opacity: 0;
+	
 	background-color: rgba(7, 13, 35, 0.9);
 	
 	border-color: #51B4BB;
@@ -400,6 +432,8 @@ a:hover {
 	border-style: none solid;
 	
 	color: #D1D3D5;
+	
+	transition: opacity 0.15s ease-out 0s;
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul li:last-child {
@@ -408,16 +442,26 @@ a:hover {
 	border-bottom-right-radius: 7px;
 }
 
+.side .usertext .md > blockquote:nth-of-type(1) ul:first-child li:nth-child(n+2) {
+	margin-left: 16px;
+}
+
+.side .usertext .md > blockquote:nth-of-type(1) ul:last-child li:nth-child(n+2) {
+	margin-left: -24px;
+}
+
 .side .usertext .md > blockquote:nth-of-type(1) ul:hover li:first-child {
 	background-image: url(%%menu-selection-2%%);
 	background-position: center top;
 	background-repeat: no-repeat;
 	
 	color: #BAFFF7;
+	text-shadow: 0 0 8px rgb(0, 185, 226);
 }
 
 .side .usertext .md > blockquote:nth-of-type(1) ul:hover li {
-	display: block;
+	visibility: visible;
+	opacity: 1;
 }
 
 /**********
@@ -425,39 +469,45 @@ a:hover {
 **********/
 
 .side {
-	background: none;
+	background: none !important;
 }
 
 /* Search */
 
 .side #search input[type="text"] {
-	padding: 2px 0;
+	padding: 2px 1px;
 	
-	background-color: rgba(5, 5, 13, 0.9);
-	border: 1px solid rgba(35, 107, 132, 0.9);
+	background-color: rgba(5, 5, 13, 0.9) !important;
+	border: 1px solid rgba(14, 137, 204, 0.9) !important;
 	border-radius: 5px;
 	
-	color: rgb(120, 120, 120);
+	color: rgb(120, 120, 120) !important;
 	text-indent: 5px;
 }
 
 /* Submit buttons */
 
 .side .submit {
-	width: 148px;
+	width: 148px !important;
+	
+	border: none !important;
+	border-radius: 0 !important;
 }
 
 .side .submit .morelink {
-	background: #ED9F33;
+	background: #ED9F33 !important;
 	
-	border-width: 3px;
-	border-style: solid;
-	border-color: #F6C653 #BD6A23 #B6631F #E8AB4A;
+	border-width: 3px !important;
+	border-style: solid !important;
+	border-color: #F6C653 #BD6A23 #B6631F #E8AB4A !important;
+	border-radius: 0 !important;
+	
+	transition: 0.1s linear background-color, 0.1s linear border-color;
 }
 
 .side .submit .morelink:hover {
-	background: #FDBD5B;
-	border-color: #FDEABA #BF712C #B66521 #EDBD6E;
+	background: #FDBD5B !important;
+	border-color: #FDEABA #BF712C #B66521 #EDBD6E !important;
 }
 
 .side .submit .morelink a {
@@ -485,15 +535,25 @@ a:hover {
 .titlebox {
 	padding: 8px;
 	
-	background-color: rgba(5, 5, 13, 0.9);
-	border: 1px solid rgba(35, 107, 132, 0.9);
+	background-color: rgba(5, 5, 13, 0.9) !important;
+	border: 1px solid rgba(14, 137, 204, 0.6) !important;
 	border-radius: 7px;
 	
-	color: #DFE1E1;
+	color: rgb(225, 225, 225);
 }
 
-.titlebox h1 a {
-	color: #DFE1E1;
+.titlebox .redditname {
+	margin-bottom: 8px;
+	
+	text-align: center;
+}
+
+.titlebox .redditname a {
+	color: rgb(225, 225, 225);
+}
+
+.titlebox .redditname a:before {
+	content: "Welcome to /r/";
 }
 
 .titlebox .fancy-toggle-button {
@@ -509,6 +569,14 @@ body.res .titlebox .fancy-toggle-button {
 	margin-right: 8px;
 }
 
+.subscribers:after {
+	content: "Summoners";
+}
+
+.subscribers .word {
+	display: none;
+}
+
 .users-online {
 	display: inline;
 	margin-left: -4px;
@@ -522,21 +590,34 @@ body.res .titlebox .fancy-toggle-button {
 }
 
 .users-online:after {
-	content: ")";
+	content: "on the Rift)";
 }
 
-.titlebox form.toggle, .leavemoderator {
+.users-online .word {
+	display: none;
+}
+
+.titlebox form.toggle,
+.leavemoderator {
 	background: none;
+	color: rgb(136, 136, 136);
 }
 
-.tagline a {
-	color: #257372;
+/* Content area */
+
+.side .usertext {
+	/*margin: 0 -7px;*/
+}
+
+.side .usertext .md {
+	margin-left: 4px;
+	margin-right: 4px;
 }
 
 /* Headers */
 
 .side .usertext .md blockquote:nth-of-type(n+2) {
-	margin: 5px;
+	margin: 0;
 	padding: 0;
 	
 	border-left-width: 0;
@@ -603,7 +684,7 @@ body.res .titlebox .fancy-toggle-button {
 	margin-top: 40px;
 	padding-top: 3px;
 	
-	background-color: rgba(0, 0, 0, 0.6);
+	background-color: rgba(0, 0, 0, 0.5);
 	
 	text-align: center;
 	text-transform: uppercase;
@@ -624,14 +705,15 @@ body.res .titlebox .fancy-toggle-button {
 /* Bottom boxes */
 
 .sidecontentbox .content {
-	background-color: rgba(5, 5, 13, 0.95);
+	background-color: rgba(5, 5, 13, 0.95) !important;
 	
-	border: 1px solid #236B84;
+	border: 1px solid #236B84 !important;
 	border-radius: 7px;
 }
 
 .sidecontentbox .title h1 {
 	color: #DFE1E1;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .icon-menu a {
@@ -639,6 +721,33 @@ body.res .titlebox .fancy-toggle-button {
 }
 
 .sidebox.create {
+	margin-bottom: 25px;
+}
+
+.sidebox.create .morelink {
+	background: #106B99;
+	border-color: #127AB2 #0E597F #0E5477 #1274A5;
+	border-style: solid;
+	border-width: 3px;
+	
+	transition: 0.1s linear background-color, 0.1s linear border-color;
+}
+
+.sidebox.create .morelink:hover {
+	background: #0E5D82;
+	border-color: #106999 #0C4866 #0B455E #0F648C;
+}
+
+.sidebox.create .morelink a,
+.sidebox.create .morelink a:hover {
+	color: #031219;
+}
+
+.sidebox.create .morelink .nub {
+	background: none;
+}
+
+.sidebox.create .spacer {
 	display: none;
 }
 
@@ -649,9 +758,8 @@ body.res .titlebox .fancy-toggle-button {
 	float: none;
 	width: 294px;
 	
-	margin-top: 4px;
-	margin-bottom: 6px;
-	padding: 8px 0;
+	margin-bottom: 5px;
+	padding: 6px 0;
 	
 	background-color: #ED9F33;
 	border-color: #F6C653 #BD6A23 #B6631F #E8AB4A;
@@ -663,6 +771,8 @@ body.res .titlebox .fancy-toggle-button {
 	font-weight: bold;
 	text-transform: capitalize;
 	color: #222222;
+	
+	transition: 0.1s linear background-color, 0.1s linear border-color;
 }
 
 .sidecontentbox a.helplink:hover {
@@ -676,13 +786,16 @@ body.res .titlebox .fancy-toggle-button {
 
 /* Frame */
 
-.listing-page #siteTable,				/* Listing pages */
-.comments-page .content[role="main"] {	/* Comment pages */
+.listing-page .content[role="main"],
+.comments-page .content[role="main"],
+.submit-page .formtabs-content {
+	min-height: 105px;
+	
 	background-color: rgba(255, 255, 255, 0.9);
 	border-image: url(%%frame-menued%%) 100 100 100 100 / 100px 100px 100px 100px / 22px 15px 20px 15px round round;
 	
-	margin: 25px 316px 0px 10px;
-	padding: 46px 14px 4px 15px;
+	margin: 25px 324px 0px 16px;
+	padding: 46px 14px 8px 15px;
 }
 
 /* Frame menu */
@@ -707,26 +820,32 @@ body.res .titlebox .fancy-toggle-button {
 }
 
 .tabmenu li a {
-	background: none;
-	border: none;
+	background: none !important;
+	border: none !important;
 	
-	color: #E7E7E7;
+	font-size: 13px !important;
+	font-weight: bold !important;
+	color: rgb(200, 200, 200);
+	transition: 0.1s linear text-shadow, 0.1s linear color;
 }
 
 .tabmenu li.selected a {
 	background: none;
 	border: none;
 	
-	color: #BAFFF7;
+	color: white;
+	text-shadow: 0 0 4px rgba(200, 200, 200, 0.5);
 }
 
 .tabmenu li:hover a {
-	color: #BAFFF7;
+	color: white;
+	text-shadow: 0 0 4px rgba(200, 200, 200, 0.5);
 }
 
 /* Arrows */
 
-.midcol, .gadget .midcol {
+.thing .midcol,
+.gadget .midcol {
 	width: 20px;
 }
 
@@ -740,30 +859,74 @@ body.res .titlebox .fancy-toggle-button {
 	height: 16px;
 }
 
-.arrow.up {
-	background-position: 0px 0px;
+.arrow.up,
+html[lang="dd"] div.arrow.up,
+html.res-nightmode div.arrow.up {
+	background-position: 0px 0px !important;
 }
 
-.arrow.up:hover {
-	background-position: -20px 0px;
+.arrow.up:hover,
+html[lang="dd"] div.arrow.up:hover,
+html.res-nightmode div.arrow.up:hover {
+	background-position: -20px 0px !important;
 }
 
-.arrow.down {
-	background-position: 0px -16px;
+.arrow.down,
+html[lang="dd"] div.arrow.down,
+html.res-nightmode div.arrow.down {
+	background-position: 0px -16px !important;
 	opacity: 0.3;
 }
 
-.arrow.down:hover {
-	background-position: -20px -16px;
+.arrow.down:hover,
+html[lang="dd"] div.arrow.down:hover,
+html.res-nightmode div.arrow.down:hover {
+	background-position: -20px -16px !important;
 	opacity: 1.0;
 }
 
-.arrow.upmod {
-	background-position: -40px 0px;
+.arrow.upmod,
+html[lang="dd"] div.arrow.upmod,
+html.res-nightmode div.arrow.upmod {
+	background-position: -40px 0px !important;
 }
 
-.arrow.downmod {
-	background-position: -40px -16px;
+.arrow.downmod,
+html[lang="dd"] div.arrow.downmod,
+html.res-nightmode div.arrow.downmod {
+	background-position: -40px -16px !important;
+}
+
+/* Thumbnails */
+
+.thumbnail.self {
+	background-image: url(%%default-thumbnail%%);
+	background-position: 0;
+}
+
+/* Expando buttons */
+
+.expando-button {
+	background-color: transparent;
+}
+
+/* Text post content */
+
+.link .usertext .md {
+	background-color: rgb(255, 255, 255);
+	border-color: rgb(136, 136, 136);
+	border-radius: 5px;
+}
+
+/* Footer */
+
+.footer {
+	background-color: rgba(5, 5, 13, 0.92);
+	border-color: rgb(35, 107, 132);
+}
+
+.footer-parent .bottommenu {
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 /****************
@@ -773,27 +936,26 @@ body.res .titlebox .fancy-toggle-button {
 /* Sort menu */
 
 .listing-page .menuarea {
-	position: relative;
-	top: 58px;
-	left: 20px;
-	z-index: 1;
+	margin-top: 0;
 	
-	margin-bottom: -14px;
-	
-	border-bottom: medium none;
+	border-bottom-color: rgb(175, 175, 175);
 }
 
 /* Links */
 
 .link {
-	margin: 0;
-	padding: 10px 4px;
+	margin: 0 !important;
+	padding: 10px !important;
 	
 	border-image: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 15%, rgba(255, 255, 255, 0.4) 85%, rgba(255, 255, 255, 0) 100%) 0;
 	border-style: none none solid;
 	border-width: 1px;
 	
 	transition: background-color 0.2s linear 0s;
+}
+
+.link.odd {
+	background-color: rgba(255, 255, 255, 0.15);
 }
 
 .link:hover {
@@ -804,11 +966,12 @@ body.res .titlebox .fancy-toggle-button {
 	padding: 2px;
 }
 
-.link .entry .domain, .link .entry .domain a {
+.link .domain,
+.link .domain a {
 	color: rgb(175, 175, 175);
 }
 
-.link .entry .tagline {
+.link .tagline {
 	color: rgb(175, 175, 175);
 }
 
@@ -822,19 +985,177 @@ body.res .titlebox .fancy-toggle-button {
 	margin-right: 2px;
 }
 
+/* Link titles */
+
+.link a.title {
+	color: rgb(14, 137, 204);
+	font-weight: bold;
+}
+
+.link a.title:visited,
+.link.visited a.title {
+	/*color: rgb(13, 86, 124);*/
+	/*color: rgb(85, 26, 139);*/
+	color: rgb(135, 76, 185);
+}
+
+/* Link buttons */
+
+.link .buttons li a {
+	color: rgb(175, 175, 175);
+}
+
 /* Sticky */
+
+.link.stickied {
+	margin: 8px 15px !important;
+	
+	background-color: rgba(100, 100, 100, 0.2);
+	border-color: rgb(187, 187, 187) rgb(238, 238, 238) rgb(238, 238, 238) rgb(187, 187, 187);
+	border-style: solid;
+	border-width: 1px;
+	border-image: none;
+	box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.05) inset, -1px -1px 2px 0 rgba(240, 240, 255, 0.3) inset;
+}
+
+.link.stickied .rank {
+	width: 4px !important;
+}
+
+.link.stickied .tagline,
+.link.stickied .domain a,
+.link.stickied .buttons > :not(:first-child) a {
+	color: rgb(125, 125, 125);
+}
+
+.link.stickied .midcol,
+.link.stickied .domain,
+.link.stickied .buttons > :not(:first-child) {
+	visibility: hidden;
+	opacity: 0;
+	
+	transition: 0.1s linear opacity;
+}
+
+.link.stickied:hover .midcol,
+.link.stickied:hover .domain,
+.link.stickied:hover .buttons > :not(:first-child) {
+	visibility: visible;
+	opacity: 1;
+}
+
+.link.stickied .thumbnail {
+	display: none;
+}
+
+.link.stickied a.title,
+.link.stickied a.title:visited,
+.link.stickied.visited a.title {
+	font-family: Garamond,"Times New Roman",serif;
+	font-size: 22px;
+	color: rgb(43, 43, 43);
+	text-shadow: 1px 1px 0 rgba(100, 100, 100, 0.2);
+}
+
+.link.stickied .stickied-tagline {
+	color: rgb(43, 43, 43);
+}
+
+/* When nothing shows up */
+
+#noresults {
+	position: relative;
+	margin: 120px 160px 60px;
+	padding: 8px;
+	
+	background-color: rgb(204, 204, 204);
+	border-color: rgb(187, 187, 187) rgb(238, 238, 238) rgb(238, 238, 238) rgb(187, 187, 187);
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.05) inset, -1px -1px 2px 0 rgba(240, 240, 255, 0.3) inset;
+	
+	color: rgb(204, 204, 204);
+}
+
+#noresults:before {
+	content: "";
+	display: block;
+	width: 237px;
+	height: 200px;
+	position: absolute;
+	bottom: -54px;
+	left: -142px;
+	
+	background-image: url(%%amumu%%);
+}
+
+#noresults:after {
+	content: "there don't seem to be any friends here";
+	position: absolute;
+	top: 8px;
+	left: 16px;
+	
+	color: rgb(255, 0, 0);
+}
 
 /* RES things */
 
-.NERPageMarker {
-	margin: -6px -3px 2px;
+#progressIndicator.neverEndingReddit {
+	width: auto !important;
+	
+	background-color: rgba(255, 255, 255, 0.6) !important;
+	border-style: solid none none !important;
+	border-radius: 0 0 8px 8px;
+}
 
-	border-style: solid none;
+.NERPageMarker {
+	margin: -1px 0 1px !important;
+	
+	background-color: rgba(255, 255, 255, 0.6) !important;
+	border-style: solid none !important;
+	border-radius: 0 !important;
+}
+
+#NERFail {
+	width: auto !important;
+	
+	margin: -1px 0 -2px !important;
+	
+	background-color: rgba(255, 255, 255, 0.6) !important;
+	border-style: solid none none !important;
+	border-radius: 0 0 8px 8px;
 }
 
 /***********
 * Comments *
 ***********/
+
+/* Link info */
+
+.linkinfo {
+	padding: 6px 8px 5px;
+	
+	background-color: rgba(5, 5, 13, 0.9) !important;
+	border: 1px solid rgba(14, 137, 204, 0.6) !important;
+	border-radius: 7px;
+	
+	color: rgb(225, 225, 225);
+}
+
+.linkinfo .shortlink {
+	font-size: 90%;
+}
+
+.linkinfo .shortlink input {
+	padding: 1px 0 1px 4px;
+	
+	background-color: rgba(5, 5, 13, 0.9);
+	border-color: rgba(14, 137, 204, 0.6);
+	
+	color: rgb(225, 225, 225);
+	font-size: 100%;
+	font-family: arial,helvetica,sans-serif;
+}
 
 /* Post content/link */
 
@@ -844,10 +1165,296 @@ body.res .titlebox .fancy-toggle-button {
 	background-color: transparent;
 }
 
+/* Comment sorting tools and stuff */
+
+.commentarea .panestack-title {
+	margin: 6px 30px 6px 10px;
+	
+	border-bottom: none;
+}
+
+.commentarea .panestack-title .title {
+	color: rgb(14, 137, 204);
+}
+
+.commentarea #REScommentSubToggle {
+	color: rgb(63, 63, 63);
+}
+
+.commentarea .menuarea {
+	color: rgb(63, 63, 63);
+}
+
+.commentarea .menuarea .dropdown span {
+	color: rgb(63, 63, 63);
+}
+
+.commentarea .menuarea .toggle {
+	line-height: 14px;
+	margin-left: 8px;
+	padding: 0 4px;
+	
+	border: 1px solid rgb(182, 182, 182);
+	border-radius: 3px;
+}
+
+.commentarea .menuarea .toggle:hover {
+	background-color: rgb(240, 243, 252);
+}
+
+.commentarea .menuarea .toggle a {
+	color: rgb(63, 63, 63);
+}
+
+.commentarea #REScommentNavToggle span:first-child {
+	margin-left: 0;
+}
+
+.usertext-edit,
+.usertext-edit a {
+	color: rgb(63, 63, 63);
+}
+
+.usertext-edit .RESCharCounter {
+	font-size: 14px;
+	color: rgb(63, 63, 63);
+}
+
+.usertext-edit button.RESBigEditorPop {
+	height: 24px;
+	
+	padding: 0;
+	
+	border-radius: 2px;
+}
+
 /* Comment area */
 
-.comment {
+.commentarea .nestedlisting {
+	margin-right: 26px;
+}
+
+.commentarea .nestedlisting div.thing.comment {
+	margin: 4px 2px 8px 12px !important;
+	padding: 6px 8px 0 5px !important;
 	
+	border: 1px solid rgb(225, 225, 225) !important;
+}
+
+.commentarea .nestedlisting div.thing.comment:hover {
+	border: 1px solid rgb(14, 137, 204) !important;
+}
+
+.commentarea .nestedlisting .comment,
+.commentarea .nestedlisting .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: rgb(255, 255, 255) !important;
+}
+
+.commentarea .nestedlisting .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment,
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: rgb(250, 250, 250) !important;
+}
+
+.comment .expand:hover {
+	background-color: rgb(14, 137, 204);
+}
+
+.comment .tagline {
+	color: rgb(175, 175, 175);
+}
+
+.comment .buttons li a {
+	color: rgb(175, 175, 175);
+}
+
+/* Post/comment styling */
+
+.thing .md h1 {
+	font-family: Garamond,"Times New Roman",serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: rgb(43, 43, 43);
+	text-shadow: 1px 1px 0 rgba(100, 100, 100, 0.1);
+}
+
+/*******************
+* Submission pages *
+*******************/
+
+.submit-page .roundfield {
+	background-color: transparent;
+}
+
+.submit-page .formtabs-content {
+	position: relative;
+	left: calc(40% - 218px);
+	
+	padding-bottom: 80px;
+}
+
+.submit-page .tabmenu {
+	left: calc(40% - 168px);
+	z-index: 1;
+}
+
+.submit-page .submit .info-notice {
+	position: relative;
+	left: calc(40% - 187px);
+	top: -90px;
+	
+	padding-right: 11px;
+	
+	border-left: none;
+	border-right: none;
+	border-radius: 0;
+}
+
+.submit-page .submit button[type="submit"] {
+	position: relative;
+	left: calc(40% - 175px);
+	top: -88px;
+}
+
+@media all and (max-width: 1300px) {
+	.submit-page .formtabs-content  {
+		left: calc(50% - 442px);
+	}
+	
+	.submit-page .tabmenu {
+		left: calc(50% - 392px);
+	}
+	
+	.submit-page .submit .info-notice {
+		left: calc(50% - 411px);
+	}
+	
+	.submit-page .submit button[type="submit"] {
+		left: calc(50% - 399px);
+	}
+}
+
+.submit-page #title-field {
+	margin-top: 100px;
+}
+
+.submit-page .submit_text {
+    position: absolute;
+    top: 100px;
+}
+
+.submit-page .submit_text h1 {
+	color: rgb(14, 137, 204);
+}
+
+/* Remove elements */
+
+.submit-page .content[role="main"] > h1 {
+	display: none;
+}
+
+/* Messages */
+
+.submit-page .tabmenu:after {
+	content: "Remember to choose the correct post type!";
+	display: inline-block;
+	
+	position: relative;
+	left: 90px;
+	
+	font-size: 11px;
+	color: rgba(150, 150, 150, 0.4);
+}
+
+.submit-page .submit .infobar {
+	font-size: 0;
+	
+	border-left: none;
+	border-right: none;
+}
+
+.submit-page .submit .infobar:after {
+	content: "You are submitting a text-based post. A title is required, but expanding further in the text field is not. Including 'upvote if' or 'don't upvote' is violation of Bandle City law.";
+	display: inline-block;
+	
+	font-size: 13px;
+}
+
+.submit-page .tabmenu li:first-child:hover:before {
+	content: "";
+	display: block;
+	
+	position: absolute;
+	top: 10px;
+	left: 36px;
+	
+	border-width: 8px;
+	border-style: solid;
+	border-color: transparent transparent rgba(255, 100, 100, 0.9);
+}
+
+.submit-page .tabmenu li:first-child:hover:after {
+	content: "Images must NOT be submitted as links.";
+	display: block;
+	width: auto;
+	
+	position: absolute;
+	top: 26px;
+	left: 26px;
+	
+	padding: 6px;
+	
+	background-color: rgba(255, 100, 100, 0.9);
+	
+	font-weight: normal;
+	font-size: 12px;
+	color: white;
+}
+
+/********
+* Other *
+********/
+
+.hover-bubble {
+	background-color: rgba(5, 5, 13, 0.9);
+	border: 1px solid rgba(14, 137, 204, 0.6);
+}
+
+.hover-bubble.anchor-right.anchor-right:before,
+.hover-bubble.anchor-left.anchor-right:before {
+	border-left-color: rgba(14, 137, 204, 0.6);
+}
+
+.hover-bubble.anchor-right.anchor-right:after,
+.hover-bubble.anchor-left.anchor-right:after {
+	border-left-color: rgba(5, 5, 13, 0.9);
+}
+
+.hover-bubble.multi-selector strong {
+	color: rgb(14, 137, 204);
+}
+
+.hover-bubble.multi-selector label {
+	color: rgb(225, 225, 225);
+}
+
+.hover-bubble.multi-selector label:hover {
+	background-color: rgba(5, 5, 13, 0.9);
+}
+
+.hover-bubble.multi-selector .create-multi input.multi-name {
+	background-color: rgba(5, 5, 13, 0.9);
+	border-color: rgba(14, 137, 204, 0.6);
+	
+	color: rgb(225, 225, 225);
 }
 
 /**************************
@@ -867,22 +1474,39 @@ a[href$="/spoiler"]:hover {
 }
 
 /************
-* Mod pages *
+* Mod stuff *
 ************/
+
+/* Mod buttons */
+
+.entry .buttons .remove-button a {
+	color: rgb(240, 100, 100) !important;
+}
+
+.entry .buttons .approve-button a{
+	color: rgb(100, 220, 100) !important;
+}
+
+/* Mod pages */
 
 .moderator .content h2 {
 	margin-top: 0;
 	
-	color: #2B2B2B;
+	color: rgb(14, 137, 204);
 	font-size: 15px;
-	text-shadow: 1px 1px 0 #A9A9A9;
 }
 
 /* Config */
 
 .linefield {
-	background-color: #E9EAEC;
-	border-radius: 7px;
+	margin-left: 20px;
+	
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 5px;
+}
+
+.linefield .title {
+	color: rgb(14, 137, 204);
 }
 
 /* Style sheet */
@@ -891,23 +1515,17 @@ a[href$="/spoiler"]:hover {
 	margin-right: 320px;
 }
 
-#subreddit_stylesheet {
+#subreddit_stylesheet,
+#images {
 	margin-bottom: 10px;
 	padding: 6px;
 	
-	background-color: #DEDEDE;
+	background-color: rgba(255, 255, 255, 0.8);
 	border-radius: 7px;
 }
 
 #subreddit_stylesheet .sheets {
 	margin-right: 0;
-}
-
-#images {
-	padding: 6px;
-	
-	background-color: #DEDEDE;
-	border-radius: 7px;
 }
 
 #image-preview-list {
@@ -918,7 +1536,84 @@ a[href$="/spoiler"]:hover {
 	margin: 20px 20px 0 0;
 	padding: 6px;
 	
-	background-color: #E9EAEC;
-	border: 2px solid #C7C7C7;
+	background-color: rgba(255, 255, 255, 0.6);
 	border-radius: 3px;
+	
+	transition: 0.1s linear background-color;
+}
+
+#image-preview-list li:hover {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+/************
+* Dark mode *
+************/
+
+html[lang="dd"] .listing-page .content[role="main"],		/* Listing pages */
+html.res-nightmode .listing-page .content[role="main"],
+html[lang="dd"] .comments-page .content[role="main"],	/* Comment pages */
+html.res-nightmode .comments-page .content[role="main"] {
+	background-color: rgba(5, 5, 13, 0.92);
+}
+
+html[lang="dd"] .link,
+html.res-nightmode .link {
+	border-image: linear-gradient(to right, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0.4) 15%, rgba(100, 100, 100, 0.4) 85%, rgba(100, 100, 100, 0) 100%) 0 0 0 0;
+}
+
+html[lang="dd"] .link.odd,
+html.res-nightmode .link.odd {
+	background-color: rgba(22, 22, 22, 0.15);
+}
+
+html[lang="dd"] .link:hover,
+html.res-nightmode .link:hover {
+	background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+html[lang="dd"] .link .rank,
+html.res-nightmode .link .rank {
+	color: rgba(75, 75, 75, 0.6);
+}
+
+html[lang="dd"] .arrow.up,
+html.res-nightmode .arrow.up,
+html[lang="dd"] .arrow.upmod,
+html.res-nightmode .arrow.upmod,
+html[lang="dd"] .arrow.down,
+html.res-nightmode .arrow.down,
+html[lang="dd"] .arrow.downmod,
+html.res-nightmode .arrow.downmod,
+html[lang="dd"] .arrow.up:hover,
+html.res-nightmode .arrow.up:hover,
+html[lang="dd"] .arrow.upmod:hover,
+html.res-nightmode .arrow.upmod:hover,
+html[lang="dd"] .arrow.down:hover,
+html.res-nightmode .arrow.down:hover,
+html[lang="dd"] .arrow.downmod:hover,
+html.res-nightmode .arrow.downmod:hover {
+	background-image: url(%%arrows-dark%%) !important;
+	width: 20px !important;
+	height: 16px !important;
+}
+
+/***********************
+* RES night mode fixes *
+***********************/
+
+html.res-nightmode #header,
+html.res-nightmode #header-bottom-left,
+html.res-nightmode :not(.comments-page) .content[role="main"],
+html.res-nightmode .side .usertext .md > blockquote:nth-of-type(1),
+html.res-nightmode .side .usertext .md > blockquote:nth-of-type(1) ul,
+html.res-nightmode .titlebox h1,
+html.res-nightmode .titlebox .leavemoderator,
+html.res-nightmode .titlebox form.toggle {
+	background-color: transparent !important;
+}
+
+html.res-nightmode h1.redditname,
+html.res-nightmode .side .title {
+	border-bottom: none;
 }
