@@ -494,7 +494,7 @@ html.res-nightmode .link .buttons li a.comments:hover {
 .side .submit-link,
 .titlebox,
 .sidecontentbox .content {
-	background-color: rgba(0, 0, 0, 0.75) !important;
+	background-color: rgba(0, 0, 0, 0.85) !important;
 	border: 1px solid rgb(49, 48, 43) !important;
 	border-radius: none !important;
 }
@@ -686,11 +686,48 @@ body.res .titlebox .fancy-toggle-button {
 }
 
 .titlebox form.toggle,
+.titlebox form.toggle .main,
 .leavemoderator {
 	padding-top: 2px;
 	
 	background: none;
 	color: rgb(136, 136, 136) !important;
+}
+
+/* Theme select */
+
+.side .usertext .md blockquote h3 + p {
+	text-align: center;
+}
+
+.side .usertext .md blockquote h3 + p a{
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	
+	border: 1px solid black;
+	outline: 1px solid rgb(49, 48, 43);
+	
+	text-shadow: none;
+	
+	transition: border-color 0.15s linear, box-shadow 0.15s linear;
+}
+
+.side .usertext .md blockquote h3 + p a:hover {
+	border-color: rgb(200, 200, 200);
+	box-shadow: 0 0 4px 1px rgba(200, 200, 200, 0.4);
+}
+
+.side .usertext .md blockquote h3 + p a:first-child {
+	margin-right: -3px;
+	
+	background-image: url(%%light-button%%);
+	border-style: solid none solid solid;
+}
+
+.side .usertext .md blockquote h3 + p a:last-child {
+	background-image: url(%%dark-button%%);
+	border-style: solid solid solid none;
 }
 
 /* Editable area */
@@ -709,7 +746,8 @@ body.res .titlebox .fancy-toggle-button {
 /* Headers */
 
 .side .usertext .md blockquote:nth-of-type(n+2) > h1,
-.side .usertext .md blockquote:nth-of-type(n+2) > h2 {
+.side .usertext .md blockquote:nth-of-type(n+2) > h2,
+.side .usertext .md blockquote:nth-of-type(n+2) > h3 {
 	line-height: 40px;
 	margin-bottom: 10px;
 	
@@ -729,7 +767,7 @@ body.res .titlebox .fancy-toggle-button {
 /* Content */
 
 .side .usertext .md > :not(blockquote):nth-of-type(n+2),
-.side .usertext .md > blockquote:nth-of-type(n+2) > :not(h1):not(h2) {
+.side .usertext .md > blockquote:nth-of-type(n+2) > :not(h1):not(h2):not(h3) {
 	margin: 0 10px;
 }
 
@@ -814,8 +852,9 @@ body.res .titlebox .fancy-toggle-button {
 .sidecontentbox .title {
 	line-height: 40px;
 	
-	background-color: rgba(50, 50, 50, 0.6);
+	background-color: rgba(40, 40, 40, 0.9);
 	border: 1px solid rgb(49, 48, 43);
+	border-bottom: none;
 	
 	text-align: center;
 }
@@ -826,6 +865,10 @@ body.res .titlebox .fancy-toggle-button {
 	font-weight: normal;
 	letter-spacing: 1px;
 	color: rgb(202, 181, 162) !important;
+}
+
+.sidecontentbox .collapse-button {
+	margin: 14px 6px;
 }
 
 .icon-menu a {
@@ -1311,7 +1354,7 @@ html.res-nightmode .link .buttons li a.comments {
 .linkinfo {
 	padding: 6px 8px 5px;
 	
-	background-color: rgba(0, 0, 0, 0.75) !important;
+	background-color: rgba(0, 0, 0, 0.85) !important;
 	border: 1px solid rgb(49, 48, 43) !important;
 	border-radius: 0;
 	
@@ -1736,11 +1779,16 @@ a[href$="/spoiler"]:hover {
 
 /* Config */
 
+.linefield,
+#subreddit_stylesheet,
+#images,
+#image-preview-list li {
+	background-color: rgba(255, 255, 255, 0.85);
+	border: 1px solid rgb(49, 48, 43);
+}
+
 .linefield {
 	margin-left: 20px;
-	
-	background-color: rgba(255, 255, 255, 0.9);
-	border-radius: 5px;
 }
 
 .linefield .title {
@@ -1757,9 +1805,6 @@ a[href$="/spoiler"]:hover {
 #images {
 	margin-bottom: 10px;
 	padding: 6px;
-	
-	background-color: rgba(255, 255, 255, 0.8);
-	border-radius: 7px;
 }
 
 #subreddit_stylesheet .sheets {
@@ -1774,14 +1819,11 @@ a[href$="/spoiler"]:hover {
 	margin: 20px 20px 0 0;
 	padding: 6px;
 	
-	background-color: rgba(255, 255, 255, 0.6);
-	border-radius: 3px;
-	
 	transition: 0.1s linear background-color;
 }
 
 #image-preview-list li:hover {
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 1.0);
 }
 
 /************
@@ -1915,6 +1957,19 @@ html.res-nightmode #noresults:after {
 	color: rgb(174, 37, 15);
 }
 
+/* Mod stuff */
+
+html[lang="dd"] .linefield,
+html.res-nightmode .linefield,
+html[lang="dd"] #subreddit_stylesheet,
+html.res-nightmode #subreddit_stylesheet,
+html[lang="dd"] #images,
+html.res-nightmode #images,
+html[lang="dd"] #image-preview-list li,
+html.res-nightmode #image-preview-list li {
+	background-color: rgba(3, 35, 42, 0.92) !important;
+}
+
 /***********************
 * RES night mode fixes *
 ***********************/
@@ -1955,4 +2010,8 @@ html.res-nightmode .side .submit-text {
 }
 html.res-nightmode .side .submit-text:hover {
 	border-color: rgb(202, 181, 162) !important;
+}
+
+html.res-nightmode .midcol .arrow {
+	margin-top: 2px;
 }
