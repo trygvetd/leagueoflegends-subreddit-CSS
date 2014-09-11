@@ -529,7 +529,8 @@ html.res-nightmode .link .buttons li a.comments:hover {
 .side #searchexpando {
 	margin-top: 2px;
 	
-	background-color: rgba(20, 16, 0, 0.8) !important;
+	background-color: rgba(0, 0, 0, 0.85) !important;
+	border-color: rgb(49, 48, 43) !important;
 	border-radius: 0;
 	
 	color: rgb(202, 181, 162) !important;
@@ -571,6 +572,7 @@ html.res-nightmode .link .buttons li a.comments:hover {
 
 .side .submit-text {
 	float: right;
+	position: relative;
 	margin-top: -52px;
 	margin-right: 10px;
 }
@@ -582,7 +584,7 @@ html.res-nightmode .link .buttons li a.comments:hover {
 }
 
 .side .submit.disabled .spacer {
-	padding: 8px;
+	padding: 8px 12px;
 	
 	background-color: rgba(0, 0, 0, 0.75);
 	border: 1px solid rgb(49, 48, 43);
@@ -595,10 +597,36 @@ html.res-nightmode .link .buttons li a.comments:hover {
 }
 
 .side .submit.disabled .subtitle:after {
-	content: "Submissions are temporarily disabled to prevent post-match spam.";
+	content: "Submissions are currently temporarily disabled to prevent short-term spam.";
 	font-size: 13px;
 	color: rgb(255, 20, 20);
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+/* Submit button rules warning */
+
+body:not(.subscriber) .side .submit-text::after {
+	content: "Please read subreddit rules before submitting. Subscribe or hover to dismiss.";
+	display: block;
+	width: 294px;
+	height: 29px;
+	position: absolute;
+	top: -8px;
+	left: -155px;
+	
+	padding: 9px 2px;
+	
+	background-color: rgba(40, 40, 40, 0.8);
+	
+	text-align: center;
+	color: rgb(230, 230, 230);
+	font-size: 11px;
+	text-shadow: 1px 1px 1px black;
+}
+
+.side .spacer:hover + .spacer > .submit-text::after, .side .submit-text:hover::after,
+.side .spacer:focus + .spacer > .submit-text::after, .side .submit-text:focus::after {
+	display: none !important;
 }
 
 /* Subreddit info */
@@ -1019,6 +1047,9 @@ body.res .titlebox .fancy-toggle-button {
 .thing .midcol,
 .gadget .midcol {
 	width: 20px;
+	position: relative;
+	overflow: visible;
+	z-index: 1;
 }
 
 .gadget .midcol {
@@ -1032,41 +1063,61 @@ body.res .titlebox .fancy-toggle-button {
 }
 
 .arrow.up,
-html[lang="dd"] div.arrow.up,
+html:lang(dd) div.arrow.up,
 html.res-nightmode div.arrow.up {
 	background-position: 0px 0px !important;
 }
 
 .arrow.up:hover,
-html[lang="dd"] div.arrow.up:hover,
+html:lang(dd) div.arrow.up:hover,
 html.res-nightmode div.arrow.up:hover {
 	background-position: -20px 0px !important;
 }
 
 .arrow.down,
-html[lang="dd"] div.arrow.down,
+html:lang(dd) div.arrow.down,
 html.res-nightmode div.arrow.down {
 	background-position: 0px -16px !important;
 	opacity: 0.3;
 }
 
 .arrow.down:hover,
-html[lang="dd"] div.arrow.down:hover,
+html:lang(dd) div.arrow.down:hover,
 html.res-nightmode div.arrow.down:hover {
 	background-position: -20px -16px !important;
 	opacity: 1.0;
 }
 
 .arrow.upmod,
-html[lang="dd"] div.arrow.upmod,
+html:lang(dd) div.arrow.upmod,
 html.res-nightmode div.arrow.upmod {
 	background-position: -40px 0px !important;
 }
 
 .arrow.downmod,
-html[lang="dd"] div.arrow.downmod,
+html:lang(dd) div.arrow.downmod,
 html.res-nightmode div.arrow.downmod {
 	background-position: -40px -16px !important;
+}
+
+/* Downvote message */
+
+.comment .arrow.down:hover::before {
+	content: "off-topic or does not contribute to discussion";
+	display: block;
+	width: 250px;
+	line-height: 12px;
+	position: relative;
+	top: -2px;
+	left: -1px;
+	z-index: -1;
+	
+	padding: 3px 3px 3px 24px;
+	
+	background-color: rgba(0, 0, 0, 0.9);
+	border: 1px solid rgb(49, 48, 43);
+	border-radius: 2px;
+	color: white;
 }
 
 /* Thumbnails */
@@ -1085,9 +1136,16 @@ html.res-nightmode div.arrow.downmod {
 /* Text post content */
 
 .link .usertext .md {
+	padding: 5px 15px;
+	
 	background-color: rgb(255, 255, 255);
 	border-color: rgb(136, 136, 136);
 	border-radius: 0;
+}
+
+.link .usertext .md h2 {
+	border-bottom: 1px dotted lightgray;
+	font-size: 15px;
 }
 
 /* Footer */
@@ -1168,7 +1226,7 @@ html.res-nightmode div.arrow.downmod {
 }
 
 .link .buttons li a.comments,
-html[lang="dd"] .link .buttons li a.comments,
+html:lang(dd) .link .buttons li a.comments,
 html.res-nightmode .link .buttons li a.comments {
 	color: rgb(31, 100, 114);
 }
@@ -1265,13 +1323,19 @@ html.res-nightmode .link .buttons li a.comments {
 	padding-left: 0;
 }
 
-.link.over18 a.title {
-	color: rgb(255, 50, 50);
+.link.over18 a.title,
+html:lang(dd) .link.over18 a.title,
+html.res-nightmode .link.over18 a.title {
+	color: rgb(255, 50, 50) !important;
 }
 
 .link.over18 a.title:visited,
-.link.over18.visited a.title {
-	color: rgb(150, 0, 0);
+html:lang(dd) .link.over18 a.title:visited,
+html.res-nightmode .link.over18 a.title:visited,
+.link.over18.visited a.title,
+html:lang(dd) .link.over18.visited a.title,
+html.res-nightmode .link.over18.visited a.title {
+	color: rgb(150, 0, 0) !important;
 }
 
 /* Text post content */
@@ -1365,10 +1429,10 @@ html.res-nightmode .link .buttons li a.comments {
 	font-size: 90%;
 }
 
-.linkinfo .shortlink input {
+.linkinfo .shortlink input#shortlink-text {
 	padding: 1px 0 1px 4px;
 	
-	background-color: rgba(0, 0, 0, 0.75);
+	background-color: rgba(0, 0, 0, 0.75) !important;
 	border-color: rgb(49, 48, 43);
 	
 	color: rgb(225, 225, 225);
@@ -1454,8 +1518,8 @@ html.res-nightmode .link .buttons li a.comments {
 }
 
 .commentarea .nestedlisting div.thing.comment {
-	margin: 4px 2px 8px 12px !important;
-	padding: 6px 8px 0 5px !important;
+	margin: 4px 2px 2px 12px !important;
+	padding: 6px 8px 6px 5px !important;
 	
 	border: 1px solid rgb(225, 225, 225) !important;
 }
@@ -1469,18 +1533,16 @@ html.res-nightmode .link .buttons li a.comments {
 .commentarea .nestedlisting .comment .comment .comment .comment .comment,
 .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment,
 .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment,
-.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment,
-.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
-	background-color: rgb(255, 255, 255) !important;
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: rgb(255, 255, 255);
 }
 
 .commentarea .nestedlisting .comment .comment,
 .commentarea .nestedlisting .comment .comment .comment .comment,
 .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment,
 .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment,
-.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment,
-.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
-	background-color: rgb(250, 250, 250) !important;
+.commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: rgb(250, 250, 250);
 }
 
 .comment .expand:hover {
@@ -1566,8 +1628,8 @@ html.res-nightmode .link .buttons li a.comments {
 }
 
 .submit-page .submit_text {
-    position: absolute;
-    top: 100px;
+	position: absolute;
+	top: 100px;
 }
 
 .submit-page .submit_text h1 {
@@ -1738,20 +1800,76 @@ html.res-nightmode .link .buttons li a.comments {
 	color: rgb(225, 225, 225);
 }
 
+/* "No Participation"-Mode, aka "Read Only"-Mode
+ * by /u/KortoloB
+ * /r/NoParticipation
+ */
+
+body:lang(np):not(.subscriber) .arrow { 
+	visibility: hidden !important;
+}
+
+body:lang(np):not(.subscriber) .usertext-edit,
+body:lang(np):not(.subscriber) .sidebox.submit,
+body:lang(np):not(.subscriber) .commentingAs,
+body:lang(np):not(.subscriber) .markdownEditor, 
+body:lang(np):not(.subscriber) a[onclick*="return reply(this)"],
+body:lang(np):not(.subscriber) .subButtons,
+body:lang(np):not(.subscriber) .helplink,
+body:lang(np):not(.subscriber) .titlebox .fancy-toggle-button.toggle > .option.add {
+	display: none !important;
+}
+
+body:lang(np):not(.subscriber) #siteTable:before {
+	content: "You have been linked to a read-only version of this subreddit. Please respect the community by not voting.";
+	display: block;
+	background-color: #F6E69F;
+	padding: 5px 10px;
+	margin: 5px 10px;
+	border: 1px solid orange;
+	font-size: small;
+}
+
+body:lang(np):not(.subscriber) .entry.likes:not(.reddit-entry):before,
+body:lang(np):not(.subscriber) .entry.dislikes:not(.reddit-entry):before {
+	content: "Please do not vote or comment when you come from external subreddits.";
+	color: red;
+	font-size: large;
+	font-weight: bold;
+}
+
 /**************************
 * Markdown-based features *
 **************************/
 
 /* Spoiler Tag */
 
-a[href$="/spoiler"] {
+a[href$="/spoiler"], a[href$="#spoiler"] {
 	background: none repeat scroll 0 0 #000000 !important;
 	color: #000000 !important;
 	cursor: default;
 }
 
-a[href$="/spoiler"]:hover {
+a[href$="/spoiler"]:hover, a[href$="#spoiler"]:hover {
 	color: #FFFFFF !important;
+}
+
+/* AutoWikibot hover to display by /u/Dropping_fruits */
+
+.comment .md h5+h6+h4+p,.comment .md h5+h6+h4+p+hr,.comment .md h5+h6+h4+p+hr+blockquote,.comment .md h5+h6+h4+p+hr+blockquote+hr,.comment .md h5+h6+h4+p+hr+blockquote+hr+p,.comment .md h5+h6+h4+p+hr+blockquote+hr+p+p {
+	display: none;
+}
+
+.comment .md:hover h5+h6+h4+p,.comment .md:hover h5+h6+h4+p+hr,.comment .md:hover h5+h6+h4+p+hr+blockquote,.comment .md:hover h5+h6+h4+p+hr+blockquote+hr,.comment .md:hover h5+h6+h4+p+hr+blockquote+hr+p,.comment .md:hover h5+h6+h4+p+hr+blockquote+hr+p+p {
+	display: block;
+}
+
+.comment .md h5+h6+h4:after {
+	content: "AutoWikibot post. Hover to view.";
+}
+
+.comment .md:hover h5+h6+h4:after {
+	content: "";
 }
 
 /************
@@ -1766,6 +1884,14 @@ a[href$="/spoiler"]:hover {
 
 .entry .buttons .approve-button a{
 	color: rgb(100, 220, 100) !important;
+}
+
+/* Reports */
+
+.link .buttons li.reported-stamp,
+.link .report-reasons li.report-reason {
+	color: black;
+	opacity: 1;
 }
 
 /* Mod pages */
@@ -1830,23 +1956,33 @@ a[href$="/spoiler"]:hover {
 * Dark mode *
 ************/
 
-html[lang="dd"] .listing-page .content[role="main"],		/* Listing pages */
+html:lang(dd) .listing-page .content[role="main"],		/* Listing pages */
 html.res-nightmode body.listing-page .content[role="main"],
-html[lang="dd"] .comments-page .content[role="main"],	/* Comment pages */
+html:lang(dd) .comments-page .content[role="main"],		/* Comment pages */
 html.res-nightmode body.comments-page .content[role="main"],
-html[lang="dd"] .related-page .content[role="main"],		/* Every other page */
+html:lang(dd) .related-page .content[role="main"],		/* Every other page */
 html.res-nightmode body.related-page .content[role="main"],
-html[lang="dd"] .submit-page .formtabs-content,			/* Submission pages */
+html:lang(dd) .submit-page .formtabs-content,			/* Submission pages */
 html.res-nightmode body.submit-page .formtabs-content {
 	background-color: rgba(3, 35, 42, 0.92) !important;
 }
 
-html[lang="dd"] .link .usertext .md,
+html:lang(dd) .link .usertext .md,
 html.res-nightmode .link .usertext .md {
 	background-color: transparent;
+	border: none;
+	
+	padding: 20px 0;
+	
+	color: rgb(202, 181, 162);
 }
 
-html[lang="dd"] .infobar,
+html:lang(dd) .comment .usertext .md,
+html.res-nightmode .comment .usertext .md {
+	color: rgb(202, 181, 162);
+}
+
+html:lang(dd) .infobar,
 html.res-nightmode .infobar {
 	background-color: /*rgb(51, 47, 40)*/ rgba(20, 16, 0, 0.8);
 	border-color: rgb(153, 91, 0);
@@ -1854,96 +1990,89 @@ html.res-nightmode .infobar {
 	color: rgb(202, 181, 162);
 }
 
-html[lang="dd"] .link,
+html:lang(dd) .link,
 html.res-nightmode .link {
 	border-image: linear-gradient(to right, rgba(100, 100, 100, 0) 0%, rgba(100, 100, 100, 0.4) 15%, rgba(100, 100, 100, 0.4) 85%, rgba(100, 100, 100, 0) 100%) 1;
 }
 
-html[lang="dd"] .link.odd,
+html:lang(dd) .link.odd,
 html.res-nightmode .link.odd {
 	background-color: rgba(22, 22, 22, 0.15);
 }
 
-html[lang="dd"] .link:hover,
+html:lang(dd) .link:hover,
 html.res-nightmode .link:hover {
 	background-color: rgba(0, 0, 0, 0.15) !important;
 }
 
-html[lang="dd"] .link .title,
+html:lang(dd) .link .title,
 html.res-nightmode .link .title {
 	color: rgb(202, 181, 162) !important;
 }
 
-html[lang="dd"] .link .title:visited,
+html:lang(dd) .link .title:visited,
 html.res-nightmode .link .title:visited {
 	color: rgb(121, 108, 97) !important;
 }
 
-html[lang="dd"] .link .rank,
+html:lang(dd) .link .rank,
 html.res-nightmode .link .rank {
 	color: rgba(75, 75, 75, 0.6);
 }
 
-html[lang="dd"] .link.stickied,
+html:lang(dd) .link.stickied,
 html.res-nightmode .link.stickied {
 	background-color: rgb(3, 35, 42) !important;
 	border: 1px solid rgb(25, 86, 87) !important;
 	box-shadow: none;
 }
 
-html[lang="dd"] .link.stickied .title,
+html:lang(dd) .link.stickied .title,
 html.res-nightmode .link.stickied .title,
-html[lang="dd"] .link.stickied .stickied-tagline,
+html:lang(dd) .link.stickied .stickied-tagline,
 html.res-nightmode .link.stickied .stickied-tagline {
 	color: rgb(202, 181, 162) !important;
 }
 
-html[lang="dd"] .link .tagline,
+html:lang(dd) .link .tagline,
 html.res-nightmode .link .tagline,
 html.res-nightmode .link .tagline time,
-html[lang="dd"] .link .buttons li a,
+html:lang(dd) .link .buttons li a,
 html.res-nightmode .link .buttons li a,
-html[lang="dd"] .link .domain, html[lang="dd"] .link .domain a,
+html:lang(dd) .link .domain, html:lang(dd) .link .domain a,
 html.res-nightmode .link .domain, html.res-nightmode .link .domain a {
 	color: rgb(150, 150, 150);
 }
 
-html[lang="dd"] .link .usertext .usertext-body,
+html:lang(dd) .link .usertext .usertext-body,
 html.res-nightmode .link .usertext .usertext-body {
 	border-color: rgb(25, 86, 87);
 	border-style: solid none;
 	border-width: 1px;
 }
 
-html[lang="dd"] .link .usertext .md,
-html.res-nightmode .link .usertext .md {
-	padding: 20px 0;
-	color: rgb(202, 181, 162);
-	border: none;
-}
-
-html[lang="dd"] .arrow.up,
+html:lang(dd) .arrow.up,
 html.res-nightmode .arrow.up,
-html[lang="dd"] .arrow.upmod,
+html:lang(dd) .arrow.upmod,
 html.res-nightmode .arrow.upmod,
-html[lang="dd"] .arrow.down,
+html:lang(dd) .arrow.down,
 html.res-nightmode .arrow.down,
-html[lang="dd"] .arrow.downmod,
+html:lang(dd) .arrow.downmod,
 html.res-nightmode .arrow.downmod,
-html[lang="dd"] .arrow.up:hover,
+html:lang(dd) .arrow.up:hover,
 html.res-nightmode .arrow.up:hover,
-html[lang="dd"] .arrow.upmod:hover,
+html:lang(dd) .arrow.upmod:hover,
 html.res-nightmode .arrow.upmod:hover,
-html[lang="dd"] .arrow.down:hover,
+html:lang(dd) .arrow.down:hover,
 html.res-nightmode .arrow.down:hover,
-html[lang="dd"] .arrow.downmod:hover,
+html:lang(dd) .arrow.downmod:hover,
 html.res-nightmode .arrow.downmod:hover {
 	background-image: url(%%arrows-dark%%) !important;
 	width: 20px !important;
 	height: 16px !important;
 }
 
-html[lang="dd"] #noresults,
+html:lang(dd) #noresults,
 html.res-nightmode #noresults {
 	background-color: rgb(3, 35, 42);
 	border: 1px solid rgb(25, 86, 87);
@@ -1952,22 +2081,68 @@ html.res-nightmode #noresults {
 	color: rgb(3, 35, 42);
 }
 
-html[lang="dd"] #noresults:after,
+html:lang(dd) #noresults:after,
 html.res-nightmode #noresults:after {
 	color: rgb(174, 37, 15);
 }
 
+html:lang(dd) .commentarea .nestedlisting .comment,
+html.res-nightmode .commentarea .nestedlisting .comment {
+	border-color: rgb(18, 61, 61) !important;
+}
+
+html:lang(dd) .commentarea .nestedlisting .comment:hover,
+html.res-nightmode .commentarea .nestedlisting div.thing.comment:hover {		/* y u force me to make such long selectors RES? */
+	border: 1px solid rgb(31, 124, 124) !important;
+}
+
+html:lang(dd) .commentarea .nestedlisting .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: rgb(0, 30, 38) !important;
+}
+
+html:lang(dd) .commentarea .nestedlisting .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment,
+html:lang(dd) .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment,
+html.res-nightmode .commentarea .nestedlisting .comment .comment .comment .comment .comment .comment .comment .comment .comment .comment {
+	background-color: rgb(3, 35, 42) !important;
+}
+
 /* Mod stuff */
 
-html[lang="dd"] .linefield,
+html:lang(dd) .linefield,
 html.res-nightmode .linefield,
-html[lang="dd"] #subreddit_stylesheet,
+html:lang(dd) #subreddit_stylesheet,
 html.res-nightmode #subreddit_stylesheet,
-html[lang="dd"] #images,
+html:lang(dd) #images,
 html.res-nightmode #images,
-html[lang="dd"] #image-preview-list li,
+html:lang(dd) #image-preview-list li,
 html.res-nightmode #image-preview-list li {
 	background-color: rgba(3, 35, 42, 0.92) !important;
+}
+
+/* NP */
+
+html.res-nightmode body:lang(np):not(.subscriber) #siteTable:before {
+	background-color: rgba(112, 53, 0, 0.7);
+	border-color: rgb(191, 122, 19);
+	color: white;
 }
 
 /***********************
